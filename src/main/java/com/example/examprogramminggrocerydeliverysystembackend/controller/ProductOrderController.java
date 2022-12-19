@@ -20,7 +20,7 @@ public class ProductOrderController {
 
     @GetMapping("/productOrders")
     public List<ProductOrder> getProductOrders() {
-        List<ProductOrder> productOrders = productOrderRepository.findAll();
+        List<ProductOrder> productOrders = productOrderRepository.findAllByOrderByDeliveryDeliveryId();
 
         if (productOrders.isEmpty()) {
             throw new ProductOrdersNotFoundException();

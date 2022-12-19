@@ -56,16 +56,17 @@ public class InitialData {
         deliveryRepository.save(d5);
 
         //ProductOrder
-        ProductOrder po1 = new ProductOrder(10,d1,p1);
+        ProductOrder po5 = new ProductOrder(7,d5,p5);
         ProductOrder po2 = new ProductOrder(15,d2,p2);
+        ProductOrder po1 = new ProductOrder(10,d1,p1);
         ProductOrder po3 = new ProductOrder(2,d3,p3);
         ProductOrder po4 = new ProductOrder(7,d4,p4);
-        ProductOrder po5 = new ProductOrder(7,d5,p5);
 
-        productOrderRepository.save(po1);
+        productOrderRepository.save(po5);
         productOrderRepository.save(po2);
         productOrderRepository.save(po3);
+        productOrderRepository.save(po1);
         productOrderRepository.save(po4);
-        productOrderRepository.save(po5);
+
     }
 }

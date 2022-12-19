@@ -3,9 +3,11 @@ package com.example.examprogramminggrocerydeliverysystembackend;
 import com.example.examprogramminggrocerydeliverysystembackend.model.Delivery;
 import com.example.examprogramminggrocerydeliverysystembackend.model.Product;
 import com.example.examprogramminggrocerydeliverysystembackend.model.ProductOrder;
+import com.example.examprogramminggrocerydeliverysystembackend.model.Van;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.DeliveryRepository;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.ProductOrderRepository;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.ProductRepository;
+import com.example.examprogramminggrocerydeliverysystembackend.repository.VanRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +25,9 @@ public class InitialData {
 
     @Autowired
     ProductOrderRepository productOrderRepository;
+
+    @Autowired
+    VanRepository vanRepository;
 
     @PostConstruct
     public void initializeData(){
@@ -68,5 +73,15 @@ public class InitialData {
         productOrderRepository.save(po1);
         productOrderRepository.save(po4);
 
+        //Van
+        Van v1 = new Van("Hyunday", "Entourage",2000);
+        Van v2 = new Van("Isuzu", "Oasis",3000);
+        Van v3 = new Van("Iveco", "Daily",2500);
+        Van v4 = new Van("Jeep", "Fleetvan",4000);
+
+        vanRepository.save(v1);
+        vanRepository.save(v2);
+        vanRepository.save(v3);
+        vanRepository.save(v4);
     }
 }

@@ -67,7 +67,7 @@ public class ProductController {
     }
 
     //TASK 2 - Edit a Product - DONE (Tested on Postman)
-    @PutMapping("editProduct/{id}")
+    @PutMapping("/editProduct/{id}")
     public Product editProduct(@RequestBody Product inputtedProduct, @PathVariable("id") int id){
         return productRepository.findById(id)
                 .map(product -> {

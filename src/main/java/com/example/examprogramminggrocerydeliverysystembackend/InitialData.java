@@ -33,12 +33,14 @@ public class InitialData {
         Product p3 = new Product("Chips", 10, 150);
         Product p4 = new Product("Eggs", 8, 200);
         Product p5 = new Product("Bread", 4, 100);
+        Product p6 = new Product("For testing", 0, 0);
 
         productRepository.save(p1);
         productRepository.save(p2);
         productRepository.save(p3);
         productRepository.save(p4);
         productRepository.save(p5);
+        productRepository.save(p6);
 
         //Delivery - Names and Addresses generated randomly online
         Delivery d1 = new Delivery(LocalDate.of(2022,12,19), "W1", "Lucas Jansson, Egevænget 75, 6660");

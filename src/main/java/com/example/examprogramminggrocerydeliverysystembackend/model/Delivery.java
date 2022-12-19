@@ -31,9 +31,14 @@ public class Delivery {
     @JsonBackReference
     private Set<ProductOrder> productOrders = new HashSet<>();
 
-    public Delivery(LocalDate deliveryDate, String fromWarehouse, String destination) {
+    @ManyToOne
+    @JoinColumn(name = "van", foreignKey = @ForeignKey(name = "fk_van_id"))
+    private Van van;
+
+    public Delivery(LocalDate deliveryDate, String fromWarehouse, String destination, Van van) {
         this.deliveryDate = deliveryDate;
         this.fromWarehouse = fromWarehouse;
         this.destination = destination;
+        this.van = van;
     }
 }

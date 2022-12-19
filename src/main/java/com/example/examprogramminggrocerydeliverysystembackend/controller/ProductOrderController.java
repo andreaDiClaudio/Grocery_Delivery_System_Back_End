@@ -6,9 +6,11 @@ import com.example.examprogramminggrocerydeliverysystembackend.exception.Product
 import com.example.examprogramminggrocerydeliverysystembackend.model.Delivery;
 import com.example.examprogramminggrocerydeliverysystembackend.model.Product;
 import com.example.examprogramminggrocerydeliverysystembackend.model.ProductOrder;
+import com.example.examprogramminggrocerydeliverysystembackend.model.Van;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.DeliveryRepository;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.ProductOrderRepository;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.ProductRepository;
+import com.example.examprogramminggrocerydeliverysystembackend.repository.VanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,8 @@ public class ProductOrderController {
     DeliveryRepository deliveryRepository;
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    VanRepository vanRepository;
 
     //Done (Tested on postman)
     @GetMapping("/productOrders")
@@ -41,10 +45,10 @@ public class ProductOrderController {
 
     //Done (Tested on postman)
     @GetMapping("/productOrder/{id}")
-    public ProductOrder getProductOrderById(@PathVariable("id") int id){
+    public ProductOrder getProductOrderById(@PathVariable("id") int id) {
         Optional<ProductOrder> productOrder = productOrderRepository.findById(id);
 
-        if (productOrder.isPresent()){
+        if (productOrder.isPresent()) {
             return productOrder.get();
         } else {
             throw new ProductOrderIdNotFoundException(id);
@@ -66,16 +70,21 @@ public class ProductOrderController {
 
     //Done (Tested on postman)
     @PostMapping("/productOrder")
-    public ProductOrder createProductOrder(@RequestBody ProductOrder productOrder){
+    public ProductOrder createProductOrder(@RequestBody ProductOrder productOrder) {
 
-        Delivery delivery = new Delivery(productOrder.getDelivery().getDeliveryDate(), productOrder.getDelivery().getFromWarehouse(), productOrder.getDelivery().getDestination());
-        deliveryRepository.save(delivery);
-        Optional<Product> product = productRepository.findById(productOrder.getProduct().getProductId());
+        Optional<Van> van = vanRepository.findById(productOrder.getDelivery().getVan().getVanId());
 
-        if (product.isPresent()) {
-            ProductOrder newProductOrder = new ProductOrder(productOrder.getQuantity(), delivery, product.get());
-            productOrderRepository.save(newProductOrder);
-            return newProductOrder;
+        if (van.isPresent()) {
+
+            Delivery delivery = new Delivery(productOrder.getDelivery().getDeliveryDate(), productOrder.getDelivery().getFromWarehouse(), productOrder.getDelivery().getDestination(), van.get());
+            deliveryRepository.save(delivery);
+            Optional<Product> product = productRepository.findById(productOrder.getProduct().getProductId());
+
+            if (product.isPresent()) {
+                ProductOrder newProductOrder = new ProductOrder(productOrder.getQuantity(), delivery, product.get());
+                productOrderRepository.save(newProductOrder);
+                return newProductOrder;
+            }
         }
         return null;
     }

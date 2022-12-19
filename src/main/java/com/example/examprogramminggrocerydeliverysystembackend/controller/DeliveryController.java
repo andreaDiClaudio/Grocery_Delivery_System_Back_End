@@ -48,7 +48,7 @@ public class DeliveryController {
     @PostMapping("/delivery")
     public Delivery createDelivery(@RequestBody Delivery delivery){
 
-        Delivery newDelivery = new Delivery(delivery.getDeliveryDate(), delivery.getFromWarehouse(), delivery.getDestination());
+        Delivery newDelivery = new Delivery(delivery.getDeliveryDate(), delivery.getFromWarehouse(), delivery.getDestination(), delivery.getVan());
         return deliveryRepository.save(newDelivery);
     }
 }

@@ -47,12 +47,23 @@ public class InitialData {
         productRepository.save(p5);
         productRepository.save(p6);
 
+        //Van
+        Van v1 = new Van("Hyunday", "Entourage",2000);
+        Van v2 = new Van("Isuzu", "Oasis",3000);
+        Van v3 = new Van("Iveco", "Daily",2500);
+        Van v4 = new Van("Jeep", "Fleetvan",4000);
+
+        vanRepository.save(v1);
+        vanRepository.save(v2);
+        vanRepository.save(v3);
+        vanRepository.save(v4);
+
         //Delivery - Names and Addresses generated randomly online
-        Delivery d1 = new Delivery(LocalDate.of(2022,12,19), "W1", "Lucas Jansson, Egevænget 75, 6660");
-        Delivery d2 = new Delivery(LocalDate.of(2022,12,20), "W2", "William Wikström, Ladbyvej 34, 5883");
-        Delivery d3 = new Delivery(LocalDate.of(2022,12,21), "W3", "Camilla Lundqvist, Nordre Ringvej 70, 1735");
-        Delivery d4 = new Delivery(LocalDate.of(2022,12,22), "W3", "Vilma Holm, Møllebakken 73, 6840");
-        Delivery d5 = new Delivery(LocalDate.of(2022,12,23), "W1", "Mads Sørensen, Bygmestervej 82, 1592");
+        Delivery d1 = new Delivery(LocalDate.of(2022,12,19), "W1", "Lucas Jansson, Egevænget 75, 6660", v4);
+        Delivery d2 = new Delivery(LocalDate.of(2022,12,20), "W2", "William Wikström, Ladbyvej 34, 5883", v3);
+        Delivery d3 = new Delivery(LocalDate.of(2022,12,21), "W3", "Camilla Lundqvist, Nordre Ringvej 70, 1735", v1);
+        Delivery d4 = new Delivery(LocalDate.of(2022,12,22), "W3", "Vilma Holm, Møllebakken 73, 6840", v2);
+        Delivery d5 = new Delivery(LocalDate.of(2022,12,23), "W1", "Mads Sørensen, Bygmestervej 82, 1592", v1);
 
         deliveryRepository.save(d1);
         deliveryRepository.save(d2);
@@ -73,15 +84,5 @@ public class InitialData {
         productOrderRepository.save(po1);
         productOrderRepository.save(po4);
 
-        //Van
-        Van v1 = new Van("Hyunday", "Entourage",2000);
-        Van v2 = new Van("Isuzu", "Oasis",3000);
-        Van v3 = new Van("Iveco", "Daily",2500);
-        Van v4 = new Van("Jeep", "Fleetvan",4000);
-
-        vanRepository.save(v1);
-        vanRepository.save(v2);
-        vanRepository.save(v3);
-        vanRepository.save(v4);
     }
 }

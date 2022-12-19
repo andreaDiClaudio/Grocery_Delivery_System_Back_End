@@ -9,4 +9,6 @@ import java.util.List;
 public interface ProductOrderRepository extends JpaRepository<ProductOrder, Integer> {
 
     List<ProductOrder> findAllByOrderByDeliveryDeliveryId();
+
+    List<ProductOrder> findAllByDeliveryFromWarehouse(String warehouse);
 }

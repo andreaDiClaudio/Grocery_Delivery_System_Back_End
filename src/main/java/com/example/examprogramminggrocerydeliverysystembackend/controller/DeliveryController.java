@@ -1,5 +1,6 @@
 package com.example.examprogramminggrocerydeliverysystembackend.controller;
 
+import com.example.examprogramminggrocerydeliverysystembackend.exception.DeliveriesFromWarehouseNotFoundException;
 import com.example.examprogramminggrocerydeliverysystembackend.exception.DeliveriesNotFoundException;
 import com.example.examprogramminggrocerydeliverysystembackend.model.Delivery;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.DeliveryRepository;
@@ -29,6 +30,19 @@ public class DeliveryController {
             return deliveries;
         }
     }
+
+    //TASK 3 - Find Specific Delivery - Done (Tested on postman)
+    @GetMapping("/deliveries/{warehouse}")
+    public List<Delivery> getDeliveriesByWarehouse(@PathVariable("warehouse") String warehouse){
+        List<Delivery> deliveries = deliveryRepository.findAllByFromWarehouse(warehouse);
+
+        if (deliveries.isEmpty()){
+            throw new DeliveriesFromWarehouseNotFoundException(warehouse);
+        } else {
+            return deliveries;
+        }
+    }
+
 
     //TASK 3 - Create New Delivery - Done (tested on Postman)
     @PostMapping("/delivery")

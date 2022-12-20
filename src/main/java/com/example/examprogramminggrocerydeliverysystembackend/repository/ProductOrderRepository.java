@@ -11,4 +11,5 @@ public interface ProductOrderRepository extends JpaRepository<ProductOrder, Inte
     List<ProductOrder> findAllByOrderByDeliveryDeliveryId();
 
     List<ProductOrder> findAllByDeliveryFromWarehouse(String warehouse);
+
 }

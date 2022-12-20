@@ -2,7 +2,9 @@ package com.example.examprogramminggrocerydeliverysystembackend.controller;
 
 import com.example.examprogramminggrocerydeliverysystembackend.exception.DeliveriesFromWarehouseNotFoundException;
 import com.example.examprogramminggrocerydeliverysystembackend.exception.DeliveriesNotFoundException;
+import com.example.examprogramminggrocerydeliverysystembackend.exception.DeliveryFromVanNotFoundException;
 import com.example.examprogramminggrocerydeliverysystembackend.model.Delivery;
+import com.example.examprogramminggrocerydeliverysystembackend.model.Van;
 import com.example.examprogramminggrocerydeliverysystembackend.repository.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,18 @@ public class DeliveryController {
 
         if (deliveries.isEmpty()){
             throw new DeliveriesFromWarehouseNotFoundException(warehouse);
+        } else {
+            return deliveries;
+        }
+    }
+
+    //TASK 4 - Find Deliveries By Van - Done (Tested on postman)
+    @GetMapping("/deliveriesVan/{id}")
+    public List<Delivery> getDeliveriesByVan(@PathVariable("id") int id){
+        List<Delivery> deliveries = deliveryRepository.findAllByVanVanId(id);
+
+        if (deliveries.isEmpty()){
+            throw new DeliveryFromVanNotFoundException(id);
         } else {
             return deliveries;
         }

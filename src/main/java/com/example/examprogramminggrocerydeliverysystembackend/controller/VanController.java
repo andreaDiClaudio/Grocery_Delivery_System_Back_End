@@ -20,6 +20,7 @@ public class VanController {
     @Autowired
     VanRepository vanRepository;
 
+    //Tested on Postman
     @GetMapping("/vans")
     public List<Van> getVans() {
 
@@ -32,6 +33,8 @@ public class VanController {
         }
     }
 
+
+    //Tested on Postman
     @GetMapping("/van/{id}")
     public Van getVanById(@PathVariable("id") int id) {
         Optional<Van> van = vanRepository.findById(id);
